@@ -11,7 +11,7 @@
     <div id="header">
         <div class="container">
             <nav>
-                <img src="images/WhatsApp Image 2025-01-20 at 21.51.42_7bba13c9.jpg" alt="logo">
+                <img src="images/Logo.jpg" alt="logo">
                 <ul id="sidemenu">
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -33,7 +33,7 @@
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="images/WhatsApp Image 2025-01-20 at 21.28.20_f10223c9.jpg" alt="">
+                    <img src="images/About Sec Img.jpg" alt="">
                 </div>
                 <div class="about-col-2">
                     <h1 class="subtitle">About Me</h1>
@@ -80,20 +80,20 @@
                     <i class="fa-solid fa-code"></i>
                     <h2>Custom Web Application development</h2>
                     <p>Build fully responsive and scalable web applications tailored to client needs, using modern technologies like HTML, CSS, JavaScript, React, Node.js, and MongoDB.</p>
-                    <a href="#">Learn more</a>
+                    <!-- <a href="#">Learn more</a> -->
                 </div>
                 <div>
                     <i class="fa-solid fa-crop"></i>
                     <h2>API Development and Integration</h2>
                     <p>Design and implement secure RESTful APIs, ensuring seamless communication between the frontend and backend systems.</p>
-                    <a href="#">Learn more</a>
+                    <!-- <a href="#">Learn more</a> -->
                 </div>
                 <div>
                     <i class="fa-brands fa-app-store"></i>
                     <h2>End-to-End Project Execution</h2>
                     <p>Handle all phases of web development, from ideation and design to deployment and maintenance, ensuring optimal performance and user satisfaction.
                     </p>
-                    <a href="#">Learn more</a>
+                    <!-- <a href="#">Learn more</a> -->
                 </div>
             </div>
         </div>
@@ -104,31 +104,31 @@
             <h1 class="subtitle">My Work</h1>
             <div class="work-list">
                 <div class="work">
-                    <img src="images/work-1.png">
+                    <img src="images/Online Hotel Booking.jpg">
                     <div class="layer">
-                        <h3>Social Media App</h3>
-                        <p>This is a Social Media app which shows every thing you want</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <h3>Online-Hotel-Booking</h3>
+                        <p>The online hotel booking system simplifies hotel reservations, allowing users to easily browse, book rooms, and manage their stays.</p>
+                        <a href="https://github.com/Jashwayalla/Online-HOTEL-BOOKING-SYSTEM"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
                 <div class="work">
-                    <img src="images/work-2.png">
+                    <img src="images/EMS WORK !.jpg">
                     <div class="layer">
-                        <h3>Music App</h3>
-                        <p>This is a Social Media app which shows every thing you want</p>
-                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <h3>Employee-Managemant-System</h3>
+                        <p>The Employee Management System streamlines employee data management, enabling efficient tracking, updating, and viewing of employee records</p>
+                        <a href="https://github.com/Jashwayalla/Employee-Management-System"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
                 <div class="work">
-                    <img src="images/work-3.png">
+                    <img src="images/Mutual Authentication.jpg">
                     <div class="layer">
-                        <h3>Online App</h3>
-                        <p>This is a Social Media app which shows every thing you want</p>
+                        <h3>Mutual Anonymous Authentication</h3>
+                        <p>The Mutual Anonymous Authentication system provides secure authentication between users and services while maintaining user privacy and protecting sensitive data</p>
                         <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn">See More</a>
+            <!-- <a href="#" class="btn">See More</a> -->
         </div>
       </div>
       <!-- ----------------contact------------- -->
@@ -151,12 +151,13 @@
                 <div class="contact-right">
                     <form name="submit-to-google-sheet">
                         <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" email="Email" placeholder="Your Email" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
                         <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
                         <button type="submit" class="btn btn2">Submit</button>
                     </form>
                     <span id="msg"></span>
                 </div>
+                
             </div>
         </div>
         <div class="copyright">
@@ -193,23 +194,28 @@
 </script>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwHRoW2rN5AQnyg7d9ZQSVDWVUkTlMId4p0vXjw-VEiJ0pEmjABD3N6wpgM8_riGqrTQQ/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxqPCltrRR_JLH_XJ6IV1vMHt5iImq-wEQGVo9tRxUPfYgnmNsX8zj7xdMCB4exyLmAFg/exec'
     const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
-  
+
     form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(Response => {
-            msg.innerHTML = "Message sent succesfully"
-            setTimeout(function(){
-                msg.innerHTML = ""
-            },5000)
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        console.log("Form Data:", Object.fromEntries(formData)); // Debugging
+
+        fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {  
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(() => msg.innerHTML = "", 1000)
             form.reset()
         })
-        .catch(error => console.error('Error!', error.message))
+        .catch(error => {
+            console.error('Error!', error.message)
+            msg.innerHTML = "Submission failed. Check console for details."
+        })
     })
-  </script>
+</script>
 
 </body>
 </html>
